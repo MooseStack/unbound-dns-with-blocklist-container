@@ -63,6 +63,17 @@ check_dependencies() {
     fi
 }
 
+set_file_permissions() {
+    echo "Setting file permissions..."
+
+    chmod 755 "$0"
+    chmod 755 "$UPDATE_SCRIPT"
+    chmod 644 "${SCRIPT_DIR}/unbound-custom.conf"
+    chmod -Rf 644 "${SCRIPT_DIR}/responsepolicyzone/"*
+
+    echo "File permissions configured."
+}
+
 check_rootless_session() {
     if [[ "$MODE" != rootless ]]; then
         return
@@ -219,6 +230,7 @@ main() {
 
     configure_mode "$1"
     check_dependencies
+    set_file_permissions
 
     if [[ "$MODE" == "cleanup" ]]; then
         cleanup
