@@ -8,7 +8,7 @@ IMAGE="registry.access.redhat.com/hi/unbound:1.26"
 
 # HaGeZi blocklist update schedule.
 # This uses systemd OnCalendar syntax.
-HAGEZI_UPDATE_SCHEDULE="Fri *-*-* 02:00:00"
+HAGEZI_UPDATE_SCHEDULE="Sat *-*-* 02:00:00" # every saturday 2AM
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update-hagezi-blocklist.sh"
