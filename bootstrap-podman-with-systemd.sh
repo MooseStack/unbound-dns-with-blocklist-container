@@ -6,6 +6,10 @@ CONTAINER_NAME="unbound"
 CONTAINER_PORT=5335
 IMAGE="registry.access.redhat.com/hi/unbound:1.26"
 
+# HaGeZi blocklist update schedule.
+# This uses systemd OnCalendar syntax.
+HAGEZI_UPDATE_SCHEDULE="Fri *-*-* 02:00:00"
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update-hagezi-blocklist.sh"
 
@@ -150,12 +154,12 @@ EOF
 }
 
 write_timer() {
-    cat > "${UNIT_DIR}/hagezi-blocklist-update.timer" <<'EOF'
+    cat > "${UNIT_DIR}/hagezi-blocklist-update.timer" <<EOF
 [Unit]
-Description=Weekly HaGeZi Unbound blocklist update
+Description=HaGeZi Unbound blocklist update
 
 [Timer]
-OnCalendar=Fri *-*-* 02:00:00
+OnCalendar=${HAGEZI_UPDATE_SCHEDULE}
 Persistent=true
 Unit=hagezi-blocklist-update.service
 
@@ -254,7 +258,7 @@ main() {
     echo "Container:  $CONTAINER_PORT"
     echo
     echo "Unbound is running on ${HOST_PORT} -> ${CONTAINER_PORT}."
-    echo "HaGeZi update timer enabled for Fridays at 02:00."
+    echo "HaGeZi update timer enabled for: ${HAGEZI_UPDATE_SCHEDULE}"
 }
 
 main "$@"
