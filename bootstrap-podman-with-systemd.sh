@@ -145,6 +145,7 @@ After=unbound-container.service
 Type=oneshot
 WorkingDirectory=${SCRIPT_DIR}
 ExecStart=/usr/bin/env bash ${UPDATE_SCRIPT}
+ExecStartPost=${SYSTEMCTL[*]} restart unbound-container.service
 EOF
 }
 
@@ -257,4 +258,3 @@ main() {
 }
 
 main "$@"
-

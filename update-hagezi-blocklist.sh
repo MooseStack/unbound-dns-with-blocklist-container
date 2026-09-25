@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Downloads latest blocklist and restarts unbound via podman
+### Downloads latest blocklist
 
 set -euo pipefail
 
@@ -40,8 +40,5 @@ fi
 # Atomic replacement.
 mv "$NEW" "$CURRENT"
 
-echo "HaGeZi Multi NORMAL updated:"
+echo "HaGeZi updated:"
 wc -l "$CURRENT"
-
-echo "Restarting Unbound..."
-podman restart unbound
