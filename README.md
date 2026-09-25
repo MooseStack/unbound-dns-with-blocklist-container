@@ -31,9 +31,11 @@ Usage
 #### Rootless: host port 5335 -> container port 5335. With non-root user.
 1. `./bootstrap-podman-with-systemd.sh rootless`
 2. `sudo loginctl enable-linger "$USER"`
+3. Test: `dig @127.0.0.1 -p 5335 google.com`
 
 #### Root: host port 53 -> container port 5335. With root/sudo.
 1. `sudo ./bootstrap-podman-with-systemd.sh root`
+2. Test: `dig @127.0.0.1 -p 53 google.com`
 
 #### Remove the container and systemd resources
 1. `sudo ./bootstrap-podman-with-systemd cleanup`
