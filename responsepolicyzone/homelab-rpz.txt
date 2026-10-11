@@ -6,5 +6,6 @@ $TTL 3600
 immich.homelab           A       172.16.0.20
 argocd.homelab           A       172.16.0.20
 headlamp.homelab         A       172.16.0.20
+gatus.homelab            A       172.16.0.20
 
 synology.homelab         A       172.16.0.9
